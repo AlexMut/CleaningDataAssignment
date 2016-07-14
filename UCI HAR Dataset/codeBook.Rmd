@@ -1,0 +1,40 @@
+---
+title: "Getting and Cleaning Data - W4 Assignement"
+output: html_document
+---
+
+# Data set : 
+* Raw data : see README.txt for original descriptions
+
+* Final data set = **wide_data**
+    + 180 observations : 6 activity * 30 subjects
+    + 68 variables : 
+        + mean and std measurements (see *features.txt* for complete list)
+        + subject (factor, values/levels : 1 to 30)
+        + activity (factor, levels : see *activity_labels.txt*)
+    + Value = mean of measurements for each pair (subject, activity)
+
+
+# Steps :
+* Merging data : 
+    + Merging data sets (X_train, X_test)
+    + Naming variables from features.txt
+    + **result = data_global** (dim : 10299 obs. of 561 variables)
+
+* Selection of variables "mean" and "std"
+    + Identification of the variables : *tBodyAcc-mean()-X, tBodyAcc-mean()-Y, tBodyAcc-mean()-Z, tBodyAcc-std()-X, ..., fBodyBodyGyroJerkMag-std()*
+    + Creation of data set with selected variables
+    + **result = data_global2** (dim : 10299 obs. of 66 variables)
+
+* Adding subject and activity
+    + Naming variables
+    + Transform variables as factor, using activity names as levels for activity variable
+    + Adding those variables into data_global2
+    + **result = data_global3** (dim : 10299 obs. of 68 variables)
+
+* Tidy data
+    + Melting data_global3 with id = subject, activity
+    + Then casting the dataset to obtain the mean for each variables for each couple (subject, activity)
+    + **result = wide_data** (dim : 180 obs. of 68 variables)
+
+
